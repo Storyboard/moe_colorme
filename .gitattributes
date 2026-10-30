@@ -1,5 +1,5 @@
-*.html working-tree-encoding=EUC-JP
-*.css working-tree-encoding=EUC-JP
-*.js working-tree-encoding=EUC-JP
-*.php working-tree-encoding=EUC-JP
-*.tpl working-tree-encoding=EUC-JP
+*.html working-tree-encoding=euc-jp
+*.css working-tree-encoding=euc-jp
+*.js working-tree-encoding=euc-jp
+*.php working-tree-encoding=euc-jp
+*.tpl working-tree-encoding=euc-jp
