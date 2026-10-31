@@ -238,7 +238,7 @@ document.write('<a href="https://twitter.com/intent/tweet?url=' + encodeURICompo
 
 		<{else}><{*  ここよりバッグ以外のoption1またはoption2 のh5タグ*}>
 			<div class="option_container-wrap">
-			<h5><{if $bid_name !=="バッグ" && $option[num].select_name === "option1"}>色を選択してください<{elseif $product.model==="moe_s_002"}><{assign var="option_type" value="opt_crave"}>刻印のデザイン<{else}><{assign var="option_type" value="opt_name"}>名入れ書体を選択してください（横書き）<{/if }></h5>
+			<h5><{if $bid_name !=="バッグ" && $option[num].select_name === "option1"}>色を選択してください<{elseif $product.model==="moe_s_002"}><{assign var="option_type" value="opt_crave"}>刻印のデザイン<{else}><{assign var="option_type" value="opt_name"}>名入れ書体を選択してください（横書き）<{/if }></h5><{if $product.model === "moe_s_001" && $option[num].select_name === "option2"}><div style="text-align:left; margin-bottom:1rem; margin-left:2rem;"><a href="//moe-bag.jp/blog/info/add_handwriting_font">書体のアルファベット一覧はこちら &gt;&gt;</a></div><{/if}>
                   <{if $product.model ==="moe_b_003" || $product.model ==="moe_b_004" || $product.model ==="moe_b_005" || $product.model ==="moe_b_006" || $product.model ==="moe_b_008" || $product.model ==="moe_b_009" || $product.model ==="moe_b_010" || $product.model ==="moe_b_011"}>
                       <p class="info_alert">本体カラーブラックは名入れ文字の識別が困難なため、名入れ/ロゴなしを推奨します。</p>
                   <{/if}>
@@ -252,6 +252,8 @@ document.write('<a href="https://twitter.com/intent/tweet?url=' + encodeURICompo
                     <{assign var="bag_naming_tpl" value=$file_name|regex_replace:"/\/(.*?)\\.tpl/":""}>
                     <{include file="$bag_naming_tpl/free59.tpl"}>
                 <{else}>
+
+             
 				    <{section name=item_data loop=$option_data_id}>
 					<{assign var="loop_count" value=$smarty.section.item_data.index}>
 					<{assign var="opt_title" value=$opt_name|cat:'-'|cat:$smarty.section.item_data.index}>
@@ -279,8 +281,17 @@ document.write('<a href="https://twitter.com/intent/tweet?url=' + encodeURICompo
                         <{/if}></div>
 				    </label>
 				    <{/section}><{* end  section name=item_data loop=$option_data_id *}>
+                  <{if $option_type === 'opt_crave' || $option_type === 'opt_name'}>
+                      <p class="info_alert">オリジナルデザインのデータはAdobeのイラストレーターになります。<br>（データの送信先はオーダーの後にメールにてご案内）</p>
+                      <{if $product.model ==="moe_s_002"}>
+                          <a href="//moe-bag.jp/data/sentire_name_format_cs6.zip" style="display:inline-block;float:left;">オリジナルデザインの雛形はこちら >></a>
+                      <{else}><{* moe_s_001,moe_b_001,moe_b_001_p,moe_b_002,moe_b_002_p *}>
+                          <a href="//moe-bag.jp/data/banner_format_cs6.zip" style="display:inline-block;float:left;">オリジナルデザインの雛形はこちら >></a>
+                      <{/if}>
+                      <a href="<{$prod_inq_url}>">オーダー前のデザインチェック（無料）がおすすめ。お問い合わせはこちら  >></a>
+                 <{/if}>
                   <{/if}>
-
+                     
 				</div>
 			</div>
         <{/if}><{* end if $option[num].select_name （h5タグの設定）*}>
