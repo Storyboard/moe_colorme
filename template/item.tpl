@@ -22,11 +22,6 @@ fbq('track', 'ViewContent', {
 		<{if $sid_name != ""}><span>&gt;</span><a itemprop="item" href='<{$home_url}><{$sid_link}>'><span itemprop="name" class="breadcrumb_name"><{$sid_name}></span><meta itemprop="position" content="3" /></a><{/if}></p>
   <!--// パンくずナビ --> 
 </div>
-<!--/////転送サービスバナー（海外からのアクセスで表示）/////-->
-<!--
-<a href="https://www.tenso.com/en/guide/shop/shop.html?bn_code=shop-moe-bag-jp" target="_blank" class="banner_tenso" style="margin-bottom:0.5rem; display:block;"><img src="//www2.tenso.com/ext/banner.php?f=banner_728x90_en.gif" alt="海外発送/国際配送サービスの転送コム"></a> 
--->
-<!--/////転送サービスバナー（海外からのアクセスで表示ここまで）/////-->
 
 <form name="product_form" method="post" action="<{$cart_url}>" class="cart_form clearfix">
   
@@ -244,73 +239,62 @@ document.write('<a href="https://twitter.com/intent/tweet?url=' + encodeURICompo
 		<{else}><{*  ここよりバッグ以外のoption1またはoption2 のh5タグ*}>
 			<div class="option_container-wrap">
 			<h5><{if $bid_name !=="バッグ" && $option[num].select_name === "option1"}>色を選択してください<{elseif $product.model==="moe_s_002"}><{assign var="option_type" value="opt_crave"}>刻印のデザイン<{else}><{assign var="option_type" value="opt_name"}>名入れ書体を選択してください（横書き）<{/if }></h5>
-				<{if $product.model !== "moe_s_002" && $product.model !== "moe_s_003"}><{if $product.model !== "moe_b_001" && $product.model !== "moe_b_001_p" && $product.model !== "moe_b_002" && $product.model !== "moe_b_002_p"}><div style="text-align:left;  margin-bottom:0.5rem; margin-left:2rem;"><a href="//moe-bag.jp/service/info_service">名入れ（ロゴ）無し対応可。詳しくはこちら &gt;&gt;</a></div><{/if }><div style="text-align:left; margin-bottom:1rem; margin-left:2rem;"><a <{if ($bid_name === "バッグ" && $sid_name === "革プリントなし") || $product.model==="moe_s_001"}>class="js-font-modal"<{else}>href="//moe-bag.jp/blog/info/add_handwriting_font" <{/if}>>書体のアルファベット一覧はこちら &gt;&gt;</a></div><{/if }>
+                  <{if $product.model ==="moe_b_003" || $product.model ==="moe_b_004" || $product.model ==="moe_b_005" || $product.model ==="moe_b_006" || $product.model ==="moe_b_008" || $product.model ==="moe_b_009" || $product.model ==="moe_b_010" || $product.model ==="moe_b_011"}>
+                      <p class="info_alert">本体カラーブラックは名入れ文字の識別が困難なため、名入れ/ロゴなしを推奨します。</p>
+                  <{/if}>
 				<div class="option_container <{$option_type}>">
 				  <{assign var="option_data" value=$option_value[num]}>
 				  <{assign var="option_data_id" value=$option_value[num].id}>
 				  <{assign var="option_data_name" value=$option_value[num].name}>
 				  <{assign var="opt_name" value=$option[num].select_name}>
 
-				  <{section name=item_data loop=$option_data_id}>
+                <{if $bid_name ==="バッグ"}>
+                    <{assign var="bag_naming_tpl" value=$file_name|regex_replace:"/\/(.*?)\\.tpl/":""}>
+                    <{include file="$bag_naming_tpl/free59.tpl"}>
+                <{else}>
+				    <{section name=item_data loop=$option_data_id}>
 					<{assign var="loop_count" value=$smarty.section.item_data.index}>
 					<{assign var="opt_title" value=$opt_name|cat:'-'|cat:$smarty.section.item_data.index}>
-				  <label for="<{$opt_title}>" class="<{$opt_title}>">
-				  <input type="radio" name="<{$opt_name}>" value="<{$option_data_id[item_data]}>" id="<{$opt_title}>">
-				  <{$option_data_name[item_data]}>
-				  <div class="item_option_sample"><{if $option[num].select_name === "option1" && $bid_name ==="バッグ"}>
-					<div class="item_option_color"></div>
-					<div class="item_option_image"></div>
-					<{elseif $option[num].select_name == "option1" && $bid_name =="その他小物"}>
-					<{if $product.model ==="moe_s_002" || $product.model ==="moe_s_003"}>
-					<{if {$opt_title ==="option1-2" || $opt_title ==="option1-3" || $opt_title ==="option1-4" || $opt_title ==="option1-5"}>
-					<div class="item_option_color2"></div>
-					<{else}>
-					<div class="item_option_color2"><img loading="lazy" src="//moe-bag.jp/shop_data/images/item/stech_frame200x200.png" alt="ステッチ有り"></div>
-					<{/if}>
-					<{else}>
-					<div class="item_option_color2"></div>
-					<{/if}>
-					<{elseif $option[num].select_name === "option2" && $product.model ==="moe_s_002"}>
-					<div class="item_option_logo"></div>
-					<{else}>
-					<div class="item_option_font"></div>
-					<{/if}></div>
-				  </label>
-				  <{/section}><{* end  section name=item_data loop=$option_data_id *}>
-                  <{if $product.model ==="moe_b_003" || $product.model ==="moe_b_004" || $product.model ==="moe_b_005" || $product.model ==="moe_b_006" || $product.model ==="moe_b_008" || $product.model ==="moe_b_009" || $product.model ==="moe_b_010" || $product.model ==="moe_b_011"}>
-                      <p class="info_alert">本体カラーブラックは名入れ文字の識別が困難なため、名入れ/ロゴなしを推奨します。</p>
+
+				    <label for="<{$opt_title}>" class="<{$opt_title}>">
+                      <input type="radio" name="<{$opt_name}>" value="<{$option_data_id[item_data]}>" id="<{$opt_title}>">
+                      <{$option_data_name[item_data]}>
+                      <div class="item_option_sample"><{if $option[num].select_name === "option1" && $bid_name ==="バッグ"}>
+                        <div class="item_option_color"></div>
+                        <div class="item_option_image"></div>
+                        <{elseif $option[num].select_name == "option1" && $bid_name =="その他小物"}>
+                        <{if $product.model ==="moe_s_002" || $product.model ==="moe_s_003"}>
+                        <{if {$opt_title ==="option1-2" || $opt_title ==="option1-3" || $opt_title ==="option1-4" || $opt_title ==="option1-5"}>
+                        <div class="item_option_color2"></div>
+                        <{else}>
+                        <div class="item_option_color2"><img loading="lazy" src="//moe-bag.jp/shop_data/images/item/stech_frame200x200.png" alt="ステッチ有り"></div>
+                        <{/if}>
+                        <{else}>
+                        <div class="item_option_color2"></div>
+                        <{/if}>
+                        <{elseif $option[num].select_name === "option2" && $product.model ==="moe_s_002"}>
+                        <div class="item_option_logo"></div>
+                        <{else}>
+                        <div class="item_option_font"></div>
+                        <{/if}></div>
+				    </label>
+				    <{/section}><{* end  section name=item_data loop=$option_data_id *}>
                   <{/if}>
-                  <{if  $option_type === 'opt_crave' || $option_type === 'opt_name'}>
-                      <p class="info_alert">オリジナルデザインのデータはAdobeのイラストレーターになります。<br>（データの送信先はオーダーの後にメールにてご案内）</p>
-                      <{if $product.model ==="moe_b_003"}>
-                          <a href="//moe-bag.jp/data/snazzy_name_format_cs6.zip" style="display:inline-block;float:left;">オリジナルデザインの雛形はこちら >></a>
-                      <{elseif $product.model ==="moe_b_004"}>
-                          <a href="//moe-bag.jp/data/coltish_name_format_cs6.zip" style="display:inline-block;float:left;">オリジナルデザインの雛形はこちら >></a>
-                      <{elseif $product.model ==="moe_b_005" || $product.model ==="moe_b_006"}>
-                          <a href="//moe-bag.jp/data/amico_bae_name_format_cs6.zip" style="display:inline-block;float:left;">オリジナルデザインの雛形はこちら >></a>
-                      <{elseif $product.model ==="moe_b_007"}>
-                          <a href="//moe-bag.jp/data/digne_name_format_cs6.zip" style="display:inline-block;float:left;">オリジナルデザインの雛形はこちら >></a>
-                      <{elseif $product.model ==="moe_b_008"}>
-                          <a href="//moe-bag.jp/data/beetle_name_format_cs6.zip" style="display:inline-block;float:left;">オリジナルデザインの雛形はこちら >></a>
-                      <{elseif $product.model ==="moe_b_009"}>
-                          <a href="//moe-bag.jp/data/raffine_name_format_cs6.zip" style="display:inline-block;float:left;">オリジナルデザインの雛形はこちら >></a>
-                      <{elseif $product.model ==="moe_b_010"}>
-                          <a href="//moe-bag.jp/data/vivante_name_format_cs6.zip" style="display:inline-block;float:left;">オリジナルデザインの雛形はこちら >></a>
-                      <{elseif $product.model ==="moe_b_011"}>
-                          <a href="//moe-bag.jp/data/foal_name_format_cs6.zip" style="display:inline-block;float:left;">オリジナルデザインの雛形はこちら >></a>
-                      <{elseif $product.model ==="moe_s_002"}>
-                          <a href="//moe-bag.jp/data/sentire_name_format_cs6.zip" style="display:inline-block;float:left;">オリジナルデザインの雛形はこちら >></a>
-                      <{else}><{* moe_s_001,moe_b_001,moe_b_001_p,moe_b_002,moe_b_002_p *}>
-                          <a href="//moe-bag.jp/data/banner_format_cs6.zip" style="display:inline-block;float:left;">オリジナルデザインの雛形はこちら >></a>
-                      <{/if}>
-                      <a href="<{$prod_inq_url}>">オーダー前のデザインチェック（無料）がおすすめ。お問い合わせはこちら  >></a>
-                 <{/if }>
+
 				</div>
 			</div>
         <{/if}><{* end if $option[num].select_name （h5タグの設定）*}>
 	<{/section}><{* end section name=num loop=$option *}>
 	<{/if}><{* end if $product.model ==="moe_s_004" *}>
 	<{/if}><{* end if !$option_output_mode *}>
+      <!--//////////名入れ入力//////////--> 
+      <{if $product.product_text_titles}>
+      <div class="option_name-area"><{foreach from=$product.product_text_titles key=key item=val}>
+        <{$val|escape}>：
+        <input type="text" name="product_text[<{$key|escape}>]" value=""/>
+        <span class="caution-txt">※未入力の場合はmoeのロゴ</span><{/foreach}></div>
+      <{/if}>
+    <!--//////////商品オプション/////////-->
     <{assign var="jsoption_tpl" value=$file_name|regex_replace:"/\/(.*?)\\.tpl/":""}>
     <{if $product.model ==="moe_b_003"}>
 		<{include file="$jsoption_tpl/free53.tpl"}>
@@ -325,14 +309,8 @@ document.write('<a href="https://twitter.com/intent/tweet?url=' + encodeURICompo
 	<{elseif $product.model ==="moe_s_004"}>
 		<{include file="$jsoption_tpl/free20.tpl"}>
 	<{/if}>
-      <!--//////////商品オプション/////////--> 
-      <!--//////////名入れ入力//////////--> 
-      <{if $product.product_text_titles}>
-      <div class="option_name-area"><{foreach from=$product.product_text_titles key=key item=val}>
-        <{$val|escape}>：
-        <input type="text" name="product_text[<{$key|escape}>]" value=""/>
-        <span class="caution-txt">※未入力の場合はmoeのロゴ</span><{/foreach}></div>
-      <{/if}>      		
+       
+
       <!--//////////納期について//////////-->
 <!--
       <{assign var="my_tpl_3" value=$file_name|regex_replace:"/\/(.*?)\\.tpl/":""}>
@@ -618,99 +596,7 @@ document.write('<a href="https://twitter.com/intent/tweet?url=' + encodeURICompo
   現在、この商品は扱っておりません。
 <{/if}>
 <{ /if }> 
-<script type="text/javascript">
- //Facebookのシェア数を取得
-//access_token:'EAAQXvZBuZCVYUBABdsa4xtDD2WDO5qYmJqLWDj0PDC4spvth2gw7FSWZBaRo87TGl7KX2EEG3f3nGGlErQZBTtj6UZCBUIPLVS0bTRuxe3ybZC4VasCfROCeD46BzvMISCHRm5D20zLwJ8YV4SL3teFpMVLqsQbveJKpBC0XW9CIKJa7ufZAMecrq7Etyd2lmFpsZA7yBUPeFOlP2ltolcqJph26lCTb94byI5HLQvq0UQZDZD'
-/*
-function get_social_count_facebook(url, selecter) {
-  jQuery.ajax({
-    url:'https://graph.facebook.com/',
-    dataType:'jsonp',
-    data:{
-      id:url,
-			fields:'og_object{engagement}',
-			access_token:'COLOR_ME_FACEBOOK_ACCESS_TOKEN'
-    },
-    success:function(res){
-		if(res.og_object !== undefined){
-			jQuery( selecter ).text(res.og_object.engagement.count);
-		} else {
-			jQuery( selecter ).text('0');
-		}
-    },
-    error:function(){
-      jQuery( selecter ).text('0');
-    }
-  });
-}
 
-get_social_count_facebook('https://shop.moe-bag.jp/?pid=<{$product.id}>', '.fb_count');
-*/
-//ポケットのストック数を取得
-/*
-function get_social_count_pocket(url, selcter) {
-  jQuery.ajax({
-    type: "get", dataType: "xml",
-    url: "https://query.yahooapis.com/v1/public/yql",
-    data: {
-      q: "SELECT content FROM data.headers WHERE url='https://widgets.getpocket.com/v1/button?label=pocket&count=vertical&v=1&url=" + url + "' and ua='#Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36'",
-      format: "xml",
-      env: "https://datatables.org/alltables.env"
-    },
-    success: function (data) {
-      var content = jQuery(data).find("content").text();
-      var match = content.match(/<em id="cnt">(\d+)<\/em>/i);
-      var count = (match != null) ? match[1] : 0;
- 
-      jQuery( selcter ).text(count);
-    }
-  });
-}
-*/
-/////get_social_count_pocket('<{$page_url}>', '.pocket_count');
-//はてなブックマークではてブ勝を取得
-/*
-function get_social_count_hatebu(url, selcter) {
-  jQuery.ajax({
-    url:'https://api.b.st-hatena.com/entry.count?callback=?',
-    dataType:'jsonp',
-    data:{
-      url:url
-    },
-    success:function(res){
-      jQuery( selcter ).text( res || 0 );
-    },
-    error:function(){
-      jQuery( selcter ).text('0');
-    }
-  });
-}
-
-var hatebu_url = decodeURIComponent( '<{$page_url}>' );
-*/
-/////get_social_count_hatebu(hatebu_url, '.hatena_count');
-
-//Twitterのシェア数を取得
-/*
-function get_social_count_twitter(url, selcter) {
-  jQuery.ajax({
-  url:"https://urls.api.twitter.com/1/urls/count.json",
-  dataType:'jsonp',
-  data:{
-    url:url
-  },
-  success:function(res){
-    jQuery( selcter ).text( res.count || 0 );
-  },
-  error:function(){
-    jQuery( selcter ).text('0');
-  }
-  });
-}
-var tw_url = decodeURIComponent( '<{$page_url}>' );
-get_social_count_twitter(tw_url, '.tw_count');
-*/
-</script>
 <script type="text/javascript">
 var imgHTTP ='https://moe-bag.jp/shop_data/images/item/sp/<{$product.id}>/';
 	
