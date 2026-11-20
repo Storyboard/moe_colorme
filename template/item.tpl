@@ -337,74 +337,68 @@ document.write('<a href="https://twitter.com/intent/tweet?url=' + encodeURICompo
 <!--//////////カートここから//////////-->
       <{assign var="cart_tpl" value=$file_name|regex_replace:"/\/(.*?)\\.tpl/":""}>
       <div class="cart_wrap">
-        <div class="cart_contents">
-<!--          <div class="cart_header"><{if $sid_name ==="革プリント有り"}><span class="caution">プリント用のデザインデータが必要です</span><{/if}><span class="cart_item-name"><{$product.name}></span></div>
--->
-          <{if $product.model != ""}>
-          <div class="cart_row"><span class="cart_header cart_header-waribiki">型番</span><span class="cart_data cart_data-waribiki" itemprop="mpn"><{$product.model}></span></div>
-          <{/if}>
-          <{if $product.sales != ""}>
-          <div class="cart_row" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-              <meta itemprop="url" content="<{$page_url}>">
-              <{if $product.model !=="moe_b_012" && $product.model !=="moe_b_013"}><meta itemprop="priceCurrency" content="JPY"><{/if}>
-              <{if $product.model !=="moe_b_012" && $product.model !=="moe_b_013"}><meta itemprop="itemCondition" content="NewCondition"><{/if}>
-              <{if $product.model !=="moe_b_012" && $product.model !=="moe_b_013"}><meta itemprop="availability" content="InStock"><{/if}>
-              <{if $product.model !=="moe_b_012" && $product.model !=="moe_b_013"}><meta itemprop="priceValidUntil" content="2030-12-31"><{/if}>
-              <{if $waribiki > 0}><!-- 一般セールの場合 -->
-                  <{if $product.model !=="moe_b_012" && $product.model !=="moe_b_013"}><meta itemprop="price" content="<{$price_regular}>"><{/if}>
-                    <span class="cart_header cart_header-waribiki">販売価格</span> 
-                    <span class="cart_data cart_data-waribiki"><s><{$product.price}></s>&rArr;<br/>
-                    <strong class="price"><{$product.sales}></strong></span> 
-              <{else}><{if $product.model !=="moe_b_012" && $product.model !=="moe_b_013"}><meta itemprop="price" content="<{$price_regular}>"><{/if}>
-                  <{if $product.model ==="moe_b_003"}><span class="cart_header" style="display: block;">販売価格</span>
-<span class="cart_data" style="display: block;"><strong class="price">○ｍｉｎｉ　　34,000円(税込37,400円)</strong><strong class="price" style="display: block;">○レギュラー　37,000円(税込40,700円)</strong></span><{elseif $product.model ==="moe_b_004"}><span class="cart_header" style="display: block;">販売価格</span>
-<span class="cart_data" style="display: block;"><strong class="price">○ｍｉｎｉ　　33,000円(税込36,300円)</strong><strong class="price" style="display: block;">○レギュラー　36,000円(税込39,600円)</strong></span>
-<{elseif $product.model ==="moe_b_007"}><span class="cart_header" style="display: block;">販売価格</span>
-<span class="cart_data" style="display: block;"><strong class="price">○ｍｉｎｉ　　34,000円(税込37,400円)</strong><strong class="price" style="display: block;">○レギュラー　36,000円(税込39,600円)</strong></span><{elseif $product.model ==="moe_b_008"}><span class="cart_header" style="display: block;">販売価格</span>
-<span class="cart_data" style="display: block;"><strong class="price">○ｍｉｎｉ　　34,000円(税込37,400円)</strong><strong class="price" style="display: block;">○レギュラー　36,000円(税込39,600円)</strong></span>
-                      <{else}>
-                      <span class="cart_header">販売価格</span>
-                      <span class="cart_data">
-                      <{if $members_login_flg === true && $product.discount_flg === true}><s><{$product.regular_price}></s><{/if}><!-- 通常販売価格 -->
-                      <{if $waribiki > 0}><{/if}>
-                      <strong class="price"><{$product.sales}></strong><!-- 販売価格 --> 
-                      <{if $members_login_flg === true && $product.discount_flg === true}><{$product.discount_rate}>OFF!!<{/if}><!-- 割引率 -->
-                      </span>
-                  <{/if}>
-              <{/if}>
-          </div>
-          <{/if}>
-          <div class="cart_row"><span class="cart_header cart_header-waribiki">送料</span><span class="cart_data cart_data-waribiki"><{if $bid_name ==="その他小物"}><!--全国一律(税込330円)<br/>-->10,000円以上お買い上げの方は送料無料。<{else}>無料<{/if}></span></div>
-          
-          <!-- 売切れ時・休止時・ログイン限定購入商品は表示しない  --> 
-          <{if $product.soldout_flg === 0 && $shop_stop_flg === false && $product.login_sale_flg === false }>
-          <div class="cart_row cart_item-count"><span class="cart_header">購入数</span><span class="cart_data clearfix"><span class="custom_select-wrap">
-            <select name="ul_product_num" class="custom_select" onchange="changeItemCount(this);"><option value="1" selected>1</option><!--<option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>--></select>
-            <span class="custom_select-btn"></span></span><span class="cart_item-unit"><{$product.unit}></span><input type="hidden" name="product_num" value="1"><!--/////商品の単位（１個、１枚など）/////--> 
-            </span></div>
-					     <script>
-									function changeItemCount(obj){
-										var idx = obj.selectedIndex;
-										document.getElementsByName("product_num").value = obj.options[idx].value;
-										//console.log(document.getElementsByName("product_num").value);
-									}
-					     </script>
-					　　　　　　<p class="caution-txt">雨の日の使用は商品の変形や劣化につながるためご注意ください。
-					     <{if $product.gift_ng_status=== null }><br>ギフトラッピングの指定はカートにてお願いします。（手数料500円）<{/if}></p>
-          <{/if}></div>
-        <!--///// cart_contentsここまで ////-->
-		<div id="cart_sp"><{include file="$cart_tpl/free51.tpl"}></div>
+        <{if $bid_name === "バッグ" && $sid_name === "革プリントなし"}>
+          <{include file="$cart_tpl/free60.tpl"}>
+        <{else}>
+          <div class="cart_contents">
+            <{if $product.model != ""}><div class="cart_row"><span class="cart_header cart_header-waribiki">型番</span><span class="cart_data cart_data-waribiki" itemprop="mpn"><{$product.model}></span></div><{/if}>
+            <{if $product.sales != ""}>
+            <div class="cart_row" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                <meta itemprop="url" content="<{$page_url}>">
+                <{if $product.model !=="moe_b_012" && $product.model !=="moe_b_013"}><meta itemprop="priceCurrency" content="JPY"><{/if}>
+                <{if $product.model !=="moe_b_012" && $product.model !=="moe_b_013"}><meta itemprop="itemCondition" content="NewCondition"><{/if}>
+                <{if $product.model !=="moe_b_012" && $product.model !=="moe_b_013"}><meta itemprop="availability" content="InStock"><{/if}>
+                <{if $product.model !=="moe_b_012" && $product.model !=="moe_b_013"}><meta itemprop="priceValidUntil" content="2030-12-31"><{/if}>
+                <{if $waribiki > 0}><!-- 一般セールの場合 -->
+                    <{if $product.model !=="moe_b_012" && $product.model !=="moe_b_013"}><meta itemprop="price" content="<{$price_regular}>"><{/if}>
+                      <span class="cart_header cart_header-waribiki">販売価格</span> 
+                      <span class="cart_data cart_data-waribiki"><s><{$product.price}></s>&rArr;<br/>
+                      <strong class="price"><{$product.sales}></strong></span> 
+                <{else}><{if $product.model !=="moe_b_012" && $product.model !=="moe_b_013"}><meta itemprop="price" content="<{$price_regular}>"><{/if}>
+                    <{if $product.model ==="moe_b_003"}><span class="cart_header" style="display: block;">販売価格</span>
+  <span class="cart_data" style="display: block;"><strong class="price">○ｍｉｎｉ　　34,000円(税込37,400円)</strong><strong class="price" style="display: block;">○レギュラー　37,000円(税込40,700円)</strong></span><{elseif $product.model ==="moe_b_004"}><span class="cart_header" style="display: block;">販売価格</span>
+  <span class="cart_data" style="display: block;"><strong class="price">○ｍｉｎｉ　　33,000円(税込36,300円)</strong><strong class="price" style="display: block;">○レギュラー　36,000円(税込39,600円)</strong></span>
+  <{elseif $product.model ==="moe_b_007"}><span class="cart_header" style="display: block;">販売価格</span>
+  <span class="cart_data" style="display: block;"><strong class="price">○ｍｉｎｉ　　34,000円(税込37,400円)</strong><strong class="price" style="display: block;">○レギュラー　36,000円(税込39,600円)</strong></span><{elseif $product.model ==="moe_b_008"}><span class="cart_header" style="display: block;">販売価格</span>
+  <span class="cart_data" style="display: block;"><strong class="price">○ｍｉｎｉ　　34,000円(税込37,400円)</strong><strong class="price" style="display: block;">○レギュラー　36,000円(税込39,600円)</strong></span>
+                        <{else}>
+                        <span class="cart_header">販売価格</span>
+                        <span class="cart_data">
+                        <{if $members_login_flg === true && $product.discount_flg === true}><s><{$product.regular_price}></s><{/if}><!-- 通常販売価格 -->
+                        <{if $waribiki > 0}><{/if}>
+                        <strong class="price"><{$product.sales}></strong><!-- 販売価格 --> 
+                        <{if $members_login_flg === true && $product.discount_flg === true}><{$product.discount_rate}>OFF!!<{/if}><!-- 割引率 -->
+                        </span>
+                    <{/if}>
+                <{/if}>
+            </div>
+            <{/if}>
+            <div class="cart_row"><span class="cart_header cart_header-waribiki">送料</span><span class="cart_data cart_data-waribiki"><{if $bid_name ==="その他小物"}><!--全国一律(税込330円)<br/>-->10,000円以上お買い上げの方は送料無料。<{else}>無料<{/if}></span></div>
+            
+            <!-- 売切れ時・休止時・ログイン限定購入商品は表示しない  --> 
+            <{if $product.soldout_flg === 0 && $shop_stop_flg === false && $product.login_sale_flg === false }>
+            <div class="cart_row cart_item-count"><span class="cart_header">購入数</span><span class="cart_data clearfix"><span class="custom_select-wrap">
+              <select name="ul_product_num" class="custom_select" onchange="changeItemCount(this);"><option value="1" selected>1</option><!--<option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>--></select>
+              <span class="custom_select-btn"></span></span><span class="cart_item-unit"><{$product.unit}></span><input type="hidden" name="product_num" value="1"><!--/////商品の単位（１個、１枚など）/////--> 
+              </span></div>
+                <script>
+                    function changeItemCount(obj){
+                      var idx = obj.selectedIndex;
+                      document.getElementsByName("product_num").value = obj.options[idx].value;
+                      //console.log(document.getElementsByName("product_num").value);
+                    }
+                </script>
+                <p class="caution-txt">雨の日の使用は商品の変形や劣化につながるためご注意ください。
+                <{if $product.gift_ng_status=== null }><br>ギフトラッピングの指定はカートにてお願いします。（手数料500円）<{/if}></p>
+            <{/if}></div>
+          <!--///// cart_contentsここまで ////-->
+          <div id="cart_sp"><{include file="$cart_tpl/free51.tpl"}></div>
+          <div class="cart_action"><a href="<{$prod_inq_url}>" class="btn btn_color-beige btn_brown-border btn-m icons_mail-brown2" title="この商品について問い合わせる">この商品について問い合わせる&nbsp;>></a><a href="<{$sk_url}>" class="btn btn_brown-border btn-m icons_box" title="特定商取引法に基づく表記 (返品など)">特定商取引法に基づく表記&nbsp;>></a><span class="btn btn_orange-border btn-m icons_easypayment">分割でのお支払い支払いOK!</span>
+          <figure><{rakuten_pay_banner type='logo1' size='big'}></figure></div>
+          <!--///// cart_actionここまで ////-->
+          <div id="cart_pc"><{include file="$cart_tpl/free52.tpl"}></div> 
+        <{/if}>
         
-        <div class="cart_action"><a href="<{$prod_inq_url}>" class="btn btn_color-beige btn_brown-border btn-m icons_mail-brown2" title="この商品について問い合わせる">この商品について問い合わせる&nbsp;>></a><a href="<{$sk_url}>" class="btn btn_brown-border btn-m icons_box" title="特定商取引法に基づく表記 (返品など)">特定商取引法に基づく表記&nbsp;>></a><span class="btn btn_orange-border btn-m icons_easypayment">分割でのお支払い支払いOK!</span>
-		<figure><{rakuten_pay_banner type='logo1' size='big'}></figure>
-<!--<div id="rakuten_sp_counter"><{rakuten_pay_point_parts}></div>-->
-        <!--<figure><img loading="lazy" src="//moe-bag.jp/shop_data/images/img_kessai_card.gif" alt="Visa、Masterカード対応">
-            <figcaption>Visa、Masterカード対応</figcaption>
-          </figure>
-        -->
-        </div>
-        <!--///// cart_actionここまで ////-->
-		<div id="cart_pc"><{include file="$cart_tpl/free52.tpl"}></div>
 		<a href="https://paypay.ne.jp/" style="display:block; margin-top: 3rem"><img loading="lazy" width="728" height="90" src="https://img14.shop-pro.jp/PA01305/529/etc/paypay_728-90.png?cmsp_timestamp=20200917201228" alt="PayPayでmoeのバッグをご注文"></a>
 						<!--<a href="https://paypay.ne.jp/" style="display:block; margin-top: 3rem"><img loading="lazy" src="https://moe-bag.jp/shop_data/images/banner/6scr_728x90_red@2x.png" alt="PayPayでmoeのバッグをご注文"></a>-->
 		<!--<a href="https://paypay.ne.jp/event/matsuri202210-paypay-jumbo/" style="display:block; margin-top: 3rem"><img loading="lazy" src="https://img14.shop-pro.jp/PA01305/529/etc/10PJ_728x90.png?cmsp_timestamp=20221017151449" alt="PayPayでmoeのバッグをご注文"></a>-->
@@ -755,7 +749,7 @@ ga('linker:autoLink', ['shop-pro.jp'], false, true);
     $('#sp-lightbox-caption').html(typeof img_info_list !== 'undefined' && img_info_list[currentIndex] ? img_info_list[currentIndex] : '');
 		scale = baseScale;
 		lastScale = baseScale;
-　　$('#sp-lightbox-img').css('transform', 'scale(' + scale + ')');
+    $('#sp-lightbox-img').css('transform', 'scale(' + scale + ')');
     if (imgs.length <= 1) {
       $('#sp-lightbox-prev, #sp-lightbox-next').hide();
     } else {
@@ -779,7 +773,7 @@ ga('linker:autoLink', ['shop-pro.jp'], false, true);
     $('#sp-lightbox-caption').html(typeof img_info_list !== 'undefined' && img_info_list[currentIndex] ? img_info_list[currentIndex] : '');
 		scale = baseScale;
 		lastScale = baseScale;
-　　$('#sp-lightbox-img').css('transform', 'scale(' + scale + ')');
+    $('#sp-lightbox-img').css('transform', 'scale(' + scale + ')');
   }
 
   $(document).on('click', '#zoom_stage > img', function() { openLightbox(0); });
