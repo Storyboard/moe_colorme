@@ -339,6 +339,7 @@ document.write('<a href="https://twitter.com/intent/tweet?url=' + encodeURICompo
       <div class="cart_wrap">
         <{if $bid_name === "バッグ" && $sid_name === "革プリントなし"}>
           <{include file="$cart_tpl/free60.tpl"}>
+          <div style="width:100%;"><{rakuten_pay_point_parts type='parts3'}></div>
         <{else}>
           <div class="cart_contents">
             <{if $product.model != ""}><div class="cart_row"><span class="cart_header cart_header-waribiki">型番</span><span class="cart_data cart_data-waribiki" itemprop="mpn"><{$product.model}></span></div><{/if}>
@@ -399,7 +400,7 @@ document.write('<a href="https://twitter.com/intent/tweet?url=' + encodeURICompo
           <div id="cart_pc"><{include file="$cart_tpl/free52.tpl"}></div> 
         <{/if}>
         
-		<a href="https://paypay.ne.jp/" style="display:block; margin-top: 3rem"><img loading="lazy" width="728" height="90" src="https://img14.shop-pro.jp/PA01305/529/etc/paypay_728-90.png?cmsp_timestamp=20200917201228" alt="PayPayでmoeのバッグをご注文"></a>
+		<a href="https://paypay.ne.jp/" style="display:block; margin-top: 1rem"><img loading="lazy" width="728" height="90" src="https://img14.shop-pro.jp/PA01305/529/etc/paypay_728-90.png?cmsp_timestamp=20200917201228" alt="PayPayでmoeのバッグをご注文"></a>
 						<!--<a href="https://paypay.ne.jp/" style="display:block; margin-top: 3rem"><img loading="lazy" src="https://moe-bag.jp/shop_data/images/banner/6scr_728x90_red@2x.png" alt="PayPayでmoeのバッグをご注文"></a>-->
 		<!--<a href="https://paypay.ne.jp/event/matsuri202210-paypay-jumbo/" style="display:block; margin-top: 3rem"><img loading="lazy" src="https://img14.shop-pro.jp/PA01305/529/etc/10PJ_728x90.png?cmsp_timestamp=20221017151449" alt="PayPayでmoeのバッグをご注文"></a>-->
         <div class="confirm_carinfo" style="margin-bottom: 2.5rem"><strong>商品ご購入時のご確認</strong>
