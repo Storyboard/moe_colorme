@@ -36,7 +36,7 @@ fbq('track', 'ViewContent', {
 	<span itemprop="brand" itemscope itemtype="http://schema.org/Brand"><meta itemprop="name" content="moe"></span>
   <div class="h1_line"></div>
 
-<div id="sale_info"><span class="sale_price">価格：<{$product.regular_price}><{if $bid_name ==="バッグ"}> <b style="color:#d00;">[送料無料]</b><{/if}></span><br><span class="sale_leadtime">ご注文後にひとつずつ製作｜標準納期：<{if $bid_name ==="バッグ"}>6<{else}>４<{/if}>週間</span><br>
+<div id="sale_info"><span class="sale_price">価格：<{$product.regular_price}><{if $bid_name ==="バッグ"}> <b style="color:#d00;">[送料無料]</b><{/if}></span><br><span class="sale_leadtime">ご注文後にひとつずつ製作｜標準納期：<{if $bid_name ==="バッグ"}>6<{else}>4<{/if}>週間</span><br>
     <span style="display: block;text-align: right;"><a href="https://moe-bag.jp/service/info_service" class="caution-txt" >＊納期は受注状況により変動する場合があります &gt;&gt;</a></span></div>
   <{if isset($smarty.server.HTTPS) && ($smarty.server.HTTPS eq "on")}>
   <{assign var="page_url" value="https://shop.moe-bag.jp/?pid="|cat:$product.id}>
