@@ -84,7 +84,7 @@ cart_contents / cart_sp / cart_action / cart_pc の4ブロックを置き換え�
 			<{/if}>
 			<li class="cartbox_item cartbox_item-ok">初期不良は無償対応</li>
 			<li class="cartbox_item cartbox_item-star" id="cartbox_review"><a href="#review" data-id="review" title="お客様の声" onclick="moeTrack('review_link_click',{pid:moePid(),product_name:moeName(),link_label:'カート枠_お客様の声'});">評価 <span class="js-cartbox-avg"></span>（<span class="js-cartbox-count"></span>件）お客様の声 &gt;&gt;</a></li>
-			<li class="cartbox_item cartbox_item-bag"><a href="<{$prod_inq_url}>" title="姫路事務所でバッグや革のサンプル確認の申し込み">姫路事務所でサンプル確認 &gt;&gt;</a></li>
+			<li class="cartbox_item cartbox_item-bag"><a href="<{$prod_inq_url}>" title="姫路事務所でバッグや革のサンプル確認の申し込み" onclick="moeTrack('inquiry_link_click',{pid:moePid(),product_name:moeName(),link_label:'カート枠_サンプル確認'});">姫路事務所でサンプル確認 &gt;&gt;</a></li>
 		</ul>
 		<p class="cartbox_notice">※受注生産のため返品不可。<br>サイズ・色は事前にご相談ください</p>
 	</div>
@@ -97,7 +97,7 @@ cart_contents / cart_sp / cart_action / cart_pc の4ブロックを置き換え�
 	<p class="cartbox_payment">分割でのお支払い OK!</p>
 
 	<!-- 問い合わせ・特商法 -->
-	<a href="<{$prod_inq_url}>" class="cartbox_inquiry" title="この商品について質問する">この商品について質問する &gt;&gt;</a>
+	<a href="<{$prod_inq_url}>" class="cartbox_inquiry" title="この商品について質問する" onclick="moeTrack('inquiry_link_click',{pid:moePid(),product_name:moeName(),link_label:'カート枠_質問する'});">この商品について質問する &gt;&gt;</a>
 	<a href="<{$sk_url}>" class="cartbox_law" title="特定商取引法に基づく表記 (返品など)">特定商取引法に基づく表記 &gt;&gt;</a>
 
 </div>
