@@ -166,7 +166,7 @@ document.write('<a href="https://twitter.com/intent/tweet?url=' + encodeURICompo
     <{/if}>
     <div id="tab_cart" class="tab-content selected">
     <h2 id="order_stage">ご注文</h2>
-        <strong style="display: block;text-align: center;color: #eb5a24;">あなただけのオリジナル！お届けまで約<{if $bid_name ==="バッグ"}>6<{else}>４<{/if}>週間<br>クリスマス、年末年始に向けて早めのご注文がおすすめです！</strong>
+        <strong style="display: block;text-align: center;color: #eb5a24;">あなただけのオリジナル！お届けまで約<{if $bid_name ==="バッグ"}>6<{else}>4<{/if}>週間<br>クリスマス、年末年始に向けて早めのご注文がおすすめです！</strong>
         <ol class="item_feature">
             <strong style="display: block;color:#6b3c30;text-align: center;margin-bottom: 0.5rem;">ご注文後にひとつずつ製作</strong>
             <li><{if $bid_name ==="バッグ"}>名入れや裏地など<{if $product.model ==="moe_b_003" || $product.model ==="moe_b_004" || $product.model ==="moe_b_005" || $product.model ==="moe_b_007" || $product.model ==="moe_b_008"}>４<{else}>３<{/if}>つのオプションを設定<{else}>カラーを選択<{/if}></li>
