@@ -4,7 +4,7 @@
 @ date:		2015/10/18
 **********************************************************-->
 <link rel='preload' as='style' id='colorme-top' href='https://moe-bag.jp/colorme/top.min.css' media='all' />
-<strong class="moe_strong">品があってカワイイ。毎日使いたくなるmoeのかばん。<br/>
+<strong class="moe_strong">品があってカワイイ。毎日使いたくなる姫路レザーのmoeのかばん。<br/>
 お好みの裏地に名入れを添える。注文を受けて作る大人の本革バッグです。</strong> 
 
 <strong style="display: block;text-align: center;color: #eb5a24; margin-bottom:1.5rem;">あなただけのオリジナル！お届けまで約6週間<br>クリスマス、年末年始に向けて早めのご注文がおすすめです！</strong>
