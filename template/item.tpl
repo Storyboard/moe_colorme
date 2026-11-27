@@ -85,6 +85,7 @@ document.write('<a href="https://twitter.com/intent/tweet?url=' + encodeURICompo
               <!--// 商品画像 --> 
               <{if $waribiki > 0}><span class="news-diary news-circle"><{$waribiki}>%0FF!</span><{/if}><{if $product.model ==="moe_b_002_p"}><p id="item_img_info" class="info_alert" style="font-size: 0.8rem; color:#333; text-align: center; padding-top: 0.5rem; margin-bottom: 0.3rem; display:block;">現在、インナーバッグのフタはファスナー仕様です。</p><{elseif $bid_name ==="バッグ"}><p id="item_img_info" class="info_alert" style="font-size: 0.8rem; color:#333; text-align: center; padding-top: 0.5rem; margin-bottom: 0.3rem; display:block;"></p><{/if}></div>
           </div>
+          <{if $product.model ==="moe_b_001_p"}><p class="txt_caution">こちらの革プリント仕様は現在販売を休止しています。通常仕様の本革3Wayバッグ「urchin」は販売中です。<br><a href="https://shop.moe-bag.jp/?pid=94662961">販売中の本革3Wayバッグ urchinはこちら >></a></p><{/if}>
             <{*  画像ギャラリーのaltの設定 *}>
             <{assign var="img_alt_tpl" value=$file_name|regex_replace:"/\/(.*?)\\.tpl/":""}>
             <{if $product.model ==="moe_b_001"}>
